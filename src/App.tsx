@@ -104,7 +104,7 @@ export default function App() {
               <div className="animate-fade-in">
                 <div className="flex items-center gap-2 mb-4 justify-center">
                   <Gift className="text-pink-500" size={24} />
-                  <h3 className="text-xl font-bold text-gray-800">この中から一つ選べ</h3>
+                  <h3 className="text-xl font-bold text-gray-800">この中から一つ選んでください</h3>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
                   {GIFT1_OPTIONS.map((option, idx) => (
@@ -170,7 +170,7 @@ export default function App() {
               <div className="animate-fade-in">
                 <div className="flex items-center gap-2 mb-4 justify-center">
                   <Gift className="text-orange-500" size={24} />
-                  <h3 className="text-xl font-bold text-gray-800">欲しいものを書いて送れ</h3>
+                  <h3 className="text-xl font-bold text-gray-800">欲しいものを書いて送ってください</h3>
                 </div>
                 <p className="text-sm text-gray-600 text-center mb-4">
                   ほしいものを入力してLINEで送ってくれい
