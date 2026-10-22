@@ -1,73 +1,62 @@
-# React + TypeScript + Vite
+# 🎁 誕生日プレゼント選びアプリ
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+誕生日プレゼントを一緒に決めるために趣味で作成したWebアプリです。  
+プレゼント候補の選択と、自由リクエストのLINE送信が1ページで完結します。
 
-Currently, two official plugins are available:
+## 機能概要
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **プレゼント1**：あらかじめ用意した4つの選択肢から1つを選ぶ
+- **プレゼント2**：欲しいものを自由入力し、ワンタップでLINEに送信する
+- 両方のプレゼントが決まると、お祝いメッセージが表示される
+- 選択状態は `localStorage` に自動保存されるため、ページを閉じても内容が残る
 
-## React Compiler
+## 技術スタック
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| カテゴリ | 使用技術 |
+|---|---|
+| フレームワーク | React 19 |
+| 言語 | TypeScript 6 |
+| ビルドツール | Vite 8 |
+| スタイリング | Tailwind CSS 4 |
+| アイコン | lucide-react |
+| ルーティング | React Router v7 |
 
-## Expanding the ESLint configuration
+## セットアップ
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```bash
+# 依存パッケージのインストール
+npm install
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# 開発サーバーの起動
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+ブラウザで `http://localhost:5173` を開くとアプリが表示されます。
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 利用可能なコマンド
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+| コマンド | 説明 |
+|---|---|
+| `npm run dev` | 開発サーバーを起動（HMR有効） |
+| `npm run build` | 本番用ビルドを生成（`dist/` へ出力） |
+| `npm run preview` | ビルド済み成果物をローカルでプレビュー |
+| `npm run lint` | ESLint によるコード検査 |
+
+## カスタマイズ
+
+[`src/App.tsx`](src/App.tsx) の先頭にある設定セクションを編集することで、アプリの内容を変更できます。
+
+```ts
+// プレゼント1の選択肢（4つ）
+const GIFT1_OPTIONS = [
+  "美術館に行く",
+  "映画を観に行く",
+  "東京観光に行く",
+  "なんかサブスクとか"
+];
+
+// LINEで送る際のメッセージテンプレート
+const createLineMessage = (text: string) => {
+  return `【誕生日プレゼント】\n${text}\n\nこれをお願いします！`;
+};
 ```
